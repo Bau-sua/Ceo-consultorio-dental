@@ -1,0 +1,109 @@
+---
+import Icon from "./Icon.astro";
+import { site } from "../data/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-brand-950 text-brand-100 mt-20">
+  <div class="container-site grid gap-10 md:grid-cols-2 lg:grid-cols-4 py-14">
+    <!-- Marca -->
+    <div>
+      <a href="/" class="flex items-center gap-2.5 mb-4">
+        <span class="grid place-items-center w-10 h-10 rounded-xl bg-brand-600 text-white">
+          <Icon name="tooth" class="w-5 h-5" />
+        </span>
+        <span class="font-display font-bold text-white text-lg">
+          Centro de Salud <span class="text-brand-300">C.E.O</span>
+        </span>
+      </a>
+      <p class="text-sm text-brand-200/80 leading-relaxed">
+        Más de {site.years} años cuidando la salud bucal de las familias de San Luis.
+        Todas las especialidades odontológicas y de salud integral en un mismo lugar.
+      </p>
+      <a
+        href={site.instagram}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-2 mt-5 text-sm font-medium text-white hover:text-brand-300 transition-colors"
+      >
+        <Icon name="instagram" class="w-5 h-5" />
+        {site.instagramHandle}
+      </a>
+    </div>
+
+    <!-- Navegación -->
+    <nav aria-label="Footer">
+      <h3 class="font-display font-semibold text-white text-sm uppercase tracking-widest mb-4">
+        Navegación
+      </h3>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="/" class="hover:text-brand-300 transition-colors">Inicio</a></li>
+        <li><a href="/especialidades/" class="hover:text-brand-300 transition-colors">Especialidades</a></li>
+        <li><a href="/nosotros/" class="hover:text-brand-300 transition-colors">Nosotros</a></li>
+        <li><a href="/blog/" class="hover:text-brand-300 transition-colors">Blog</a></li>
+        <li><a href="/contacto/" class="hover:text-brand-300 transition-colors">Contacto</a></li>
+        <li><a href="/contacto/#turnos" class="hover:text-brand-300 transition-colors">Pedí un turno</a></li>
+      </ul>
+    </nav>
+
+    <!-- Contacto -->
+    <div>
+      <h3 class="font-display font-semibold text-white text-sm uppercase tracking-widest mb-4">
+        Contacto
+      </h3>
+      <ul class="space-y-3 text-sm">
+        <li class="flex items-start gap-2.5">
+          <Icon name="pin" class="w-5 h-5 text-brand-300 shrink-0 mt-0.5" />
+          <span>
+            {site.address}
+            <br />
+            {site.city}
+          </span>
+        </li>
+        <li class="flex items-center gap-2.5">
+          <Icon name="clock" class="w-5 h-5 text-brand-300 shrink-0" />
+          {site.hours}
+        </li>
+        <li class="flex items-center gap-2.5">
+          <Icon name="phone" class="w-5 h-5 text-brand-300 shrink-0" />
+          <a href={`tel:${site.phoneTel}`} class="hover:text-brand-300 transition-colors">
+            {site.phoneDisplay}
+          </a>
+        </li>
+        <li class="flex items-center gap-2.5">
+          <Icon name="whatsapp" class="w-5 h-5 text-[#25D366] shrink-0" />
+          <a
+            href={site.whatsappUrl}
+            target="_blank"
+            rel="noopener"
+            class="hover:text-brand-300 transition-colors"
+          >
+            WhatsApp directo
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Horarios + obras sociales -->
+    <div>
+      <h3 class="font-display font-semibold text-white text-sm uppercase tracking-widest mb-4">
+        Atención por
+      </h3>
+      <p class="text-sm text-brand-200/80 mb-4">
+        Obras sociales y prepagas. Consultanos por la tuya.
+      </p>
+      <a href={site.mapsLink} target="_blank" rel="noopener" class="btn-ghost-light w-full !py-3">
+        <Icon name="pin" class="w-4 h-4" />
+        Cómo llegar
+      </a>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-site flex flex-col sm:flex-row items-center justify-between gap-2 py-5 text-xs text-brand-200/70">
+      <p>© {year} {site.name} · Todos los derechos reservados.</p>
+      <p>Diseño y desarrollo web: <span class="text-brand-200">tu agencia</span></p>
+    </div>
+  </div>
+</footer>

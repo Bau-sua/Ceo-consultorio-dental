@@ -1,0 +1,413 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import { site, stats, services, obrasSociales, team, testimonios, posts } from "../data/site";
+
+const title = "Centro de Salud C.E.O — Odontología integral en San Luis";
+const description =
+  "Clínica odontológica en San Luis Capital: implantes, ortodoncia, estética dental y más. 16 especialistas, más de 10 años de experiencia. Atendemos por obras sociales y particulares. Pedí tu turno por WhatsApp.";
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": ["Dentist", "MedicalClinic"],
+  name: site.name,
+  url: site.url,
+  telephone: site.phoneTel,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address,
+    addressLocality: "San Luis",
+    addressRegion: "San Luis",
+    addressCountry: "AR",
+  },
+  openingHours: "Mo-Fr 08:00-20:00",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Especialidades odontológicas",
+    itemListElement: services.map((s, i) => ({
+      "@type": "Offer",
+      position: i + 1,
+      name: s.title,
+    })),
+  },
+});
+---
+
+<Layout title={title} description={description} path="/" schema={schema}>
+  <!-- ============ HERO ============ -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-100/60">
+    <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-brand-200/40 blur-3xl" aria-hidden="true"></div>
+    <div class="absolute bottom-0 -left-24 w-80 h-80 rounded-full bg-accent-100/50 blur-3xl" aria-hidden="true"></div>
+
+    <div class="container-site grid lg:grid-cols-2 gap-12 items-center py-16 sm:py-24 relative">
+      <div class="animate-fade-up">
+        <p class="section-kicker mb-4">Odontología y salud integral en San Luis</p>
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.4rem] font-bold leading-[1.08] tracking-tight">
+          Tu mejor sonrisa
+          <span class="text-brand-600">empieza acá</span>
+        </h1>
+        <p class="mt-5 text-lg text-ink-700 leading-relaxed max-w-xl">
+          {site.years} años cuidando a las familias de San Luis con{" "}
+          <strong class="text-ink-900">16 especialistas</strong> en un mismo lugar: implantes,
+          ortodoncia, estética dental y mucho más. Atendemos por obras sociales o particular.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn-whatsapp !text-base !px-8 !py-4">
+            <Icon name="whatsapp" class="w-5 h-5" />
+            Pedí tu turno
+          </a>
+          <a href="/especialidades/" class="btn-secondary !text-base !px-8 !py-4">
+            Ver especialidades
+            <Icon name="arrow" class="w-5 h-5" />
+          </a>
+        </div>
+
+        <!-- Chips de confianza -->
+        <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-700">
+          {
+            ["Atención por obras sociales", "Urgencias el mismo día", "Tecnología digital"].map((chip) => (
+              <li class="flex items-center gap-2">
+                <Icon name="check" class="w-4 h-4 text-brand-600" />
+                {chip}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Visual del hero -->
+      <div class="relative hidden sm:block animate-fade-up delay-200">
+        <div class="relative rounded-[2.5rem] bg-gradient-to-br from-brand-600 to-brand-800 p-1.5 shadow-2xl shadow-brand-600/30">
+          <div class="rounded-[2.2rem] bg-white/10 backdrop-blur-sm p-8 sm:p-10">
+            <div class="grid place-items-center w-20 h-20 rounded-3xl bg-white/15 text-white mb-6">
+              <Icon name="tooth" class="w-11 h-11" />
+            </div>
+            <h2 class="font-display text-white text-2xl font-semibold leading-snug">
+              "La sonrisa es la tarjeta de presentación de tu salud"
+            </h2>
+            <p class="mt-4 text-brand-100/90 leading-relaxed">
+              Equipo interdisciplinario: odontología, medicina, nutrición, kinesiología y
+              fonoaudiología trabajando juntos por tu bienestar integral.
+            </p>
+            <div class="mt-8 flex items-center gap-4">
+              <div class="flex -space-x-3">
+                {
+                  team.slice(0, 4).map((m) => (
+                    <span
+                      class="grid place-items-center w-11 h-11 rounded-full bg-brand-100 text-brand-700 font-display font-semibold text-sm border-2 border-white"
+                      title={m.name}
+                    >
+                      {m.name.replace("Dra. ", "").replace("Dr. ", "").replace("Lic. ", "").replace("Fga. ", "").split(" ")[0][0]}
+                      {m.name.split(" ").pop()?.[0]}
+                    </span>
+                  ))
+                }
+              </div>
+              <p class="text-sm text-brand-100">
+                <strong class="text-white font-semibold">{team.length} especialistas</strong>
+                <br />
+                esperando por vos
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta flotante obras sociales -->
+        <div class="absolute -bottom-8 -left-6 rounded-2xl bg-white shadow-xl p-4 border border-slate-100 animate-fade-up delay-300">
+          <p class="text-xs font-semibold uppercase tracking-wider text-ink-500 mb-2">
+            Atendemos por
+          </p>
+          <p class="font-display font-semibold text-ink-900 text-sm leading-relaxed">
+            DOSEP · Galeno · Swiss Medical<br />SanCor · Omint · Prevención Salud
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="bg-brand-950 text-white" aria-label="Números de la clínica">
+    <div class="container-site grid grid-cols-2 lg:grid-cols-4 gap-8 py-12">
+      {
+        stats.map((s) => (
+          <div class="text-center">
+            <p class="font-display text-4xl sm:text-5xl font-bold text-brand-300">{s.value}</p>
+            <p class="mt-2 text-sm text-brand-100/80">{s.label}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ============ SERVICIOS ============ -->
+  <section id="servicios" class="container-site py-20 sm:py-24">
+    <div class="max-w-2xl mb-12">
+      <p class="section-kicker mb-3">Especialidades</p>
+      <h2 class="section-title">Todo lo que tu sonrisa necesita, en un solo lugar</h2>
+      <p class="mt-4 text-ink-700 leading-relaxed">
+        Del tratamiento más simple al más complejo: cada caso se atiende con una terapia
+        personalizada y ajustada a la mejor solución para tu problema.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {
+        services.map((s) => (
+          <article class="card p-6 flex flex-col">
+            <div class="relative">
+              <span class="grid place-items-center w-13 h-13 rounded-2xl bg-brand-50 text-brand-600 mb-5" style="width:3.25rem;height:3.25rem">
+                <Icon name={s.icon} class="w-7 h-7" />
+              </span>
+              {s.tag && (
+                <span class="absolute top-0 right-0 rounded-full bg-accent-100 text-accent-700 text-[11px] font-semibold px-3 py-1">
+                  {s.tag}
+                </span>
+              )}
+            </div>
+            <h3 class="font-display font-semibold text-lg text-ink-900">{s.title}</h3>
+            <p class="mt-2 text-sm text-ink-500 leading-relaxed flex-1">{s.description}</p>
+            <a
+              href={site.whatsappUrl}
+              target="_blank"
+              rel="noopener"
+              class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-800 transition-colors"
+            >
+              Consultar
+              <Icon name="arrow" class="w-4 h-4" />
+            </a>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 text-center">
+      <a href="/especialidades/" class="btn-secondary">
+        Ver todas las especialidades
+        <Icon name="arrow" class="w-5 h-5" />
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ OBRAS SOCIALES ============ -->
+  <section class="bg-slate-50 border-y border-slate-100" aria-label="Obras sociales y prepagas">
+    <div class="container-site py-14">
+      <h2 class="text-center font-display text-xl sm:text-2xl font-semibold text-ink-900">
+        Atendemos por obras sociales o particulares
+      </h2>
+      <p class="text-center text-ink-500 mt-2 text-sm">
+        Si tu obra social no figura, consultanos: gestionamos la mayoría de las coberturas.
+      </p>
+      <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        {
+          obrasSociales.map((os) => (
+            <div class="card !hover:shadow-md p-4 text-center flex flex-col items-center justify-center min-h-24">
+              <span class="font-display font-bold text-brand-700 text-lg">{os.name}</span>
+              <span class="mt-1 text-[11px] text-ink-500 leading-tight">{os.note}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POR QUÉ ELEGIRNOS ============ -->
+  <section class="container-site py-20 sm:py-24 grid lg:grid-cols-2 gap-14 items-center">
+    <div class="relative order-2 lg:order-1">
+      <div class="rounded-[2rem] bg-gradient-to-br from-brand-100 to-brand-200 p-10 sm:p-14">
+        <Icon name="heart" class="w-14 h-14 text-brand-600" />
+        <p class="mt-6 font-display text-2xl font-semibold text-brand-900 leading-snug">
+          Llevamos más de {site.years} años cuidando los dientes de San Luis
+        </p>
+      </div>
+      <div class="absolute -bottom-6 right-6 rounded-2xl bg-white shadow-xl border border-slate-100 px-6 py-4">
+        <p class="font-display font-bold text-3xl text-brand-600">95%</p>
+        <p class="text-xs text-ink-500">pacientes satisfechos</p>
+      </div>
+    </div>
+
+    <div class="order-1 lg:order-2">
+      <p class="section-kicker mb-3">Por qué elegirnos</p>
+      <h2 class="section-title">Una clínica pensada para que vengas tranquilo</h2>
+      <p class="mt-4 text-ink-700 leading-relaxed">
+        Sabemos que ir al dentista genera temores. Por eso nuestro equipo trabaja con
+        protocolos claros, tecnología actualizada y un trato humano de principio a fin.
+      </p>
+      <ul class="mt-8 space-y-5">
+        {
+          [
+            {
+              icon: "user",
+              title: "16 especialistas bajo un mismo techo",
+              desc: "No necesitás recorrer la ciudad: odontólogos, médicos y terapistas coordinados entre sí.",
+            },
+            {
+              icon: "shield",
+              title: "Protocolos de bioseguridad estrictos",
+              desc: "Esterilización certificada y espacios diseñados para tu tranquilidad.",
+            },
+            {
+              icon: "clock",
+              title: "Urgencias atendidas el mismo día",
+              desc: "Dolor, golpes o roturas: llamanos y te damos una solución rápida.",
+            },
+            {
+              icon: "heart",
+              title: "Pacientes que nos recomiendan",
+              desc: "Más del 95% de quienes nos visitan nos recomiendan a su familia y amigos.",
+            },
+          ].map((item) => (
+            <li class="flex gap-4">
+              <span class="grid place-items-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 shrink-0">
+                <Icon name={item.icon} class="w-5 h-5" />
+              </span>
+              <div>
+                <h3 class="font-display font-semibold text-ink-900">{item.title}</h3>
+                <p class="text-sm text-ink-500 mt-1 leading-relaxed">{item.desc}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ EQUIPO (preview) ============ -->
+  <section class="bg-gradient-to-b from-slate-50 to-white border-y border-slate-100" aria-label="Equipo">
+    <div class="container-site py-20 sm:py-24">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+        <div class="max-w-2xl">
+          <p class="section-kicker mb-3">Nuestro equipo</p>
+          <h2 class="section-title">Conocé a quienes cuidan tu sonrisa</h2>
+        </div>
+        <a href="/nosotros/" class="btn-secondary shrink-0">
+          Conocer a los 16 especialistas
+          <Icon name="arrow" class="w-5 h-5" />
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          team.slice(0, 4).map((m) => (
+            <article class="card p-6 text-center">
+              <span class="mx-auto grid place-items-center w-20 h-20 rounded-full bg-brand-100 text-brand-700 font-display font-bold text-2xl">
+                {m.name.replace("Dra. ", "").replace("Dr. ", "").replace("Lic. ", "").replace("Fga. ", "").split(" ")[0][0]}
+                {m.name.split(" ").pop()?.[0]}
+              </span>
+              <h3 class="mt-4 font-display font-semibold text-ink-900">{m.name}</h3>
+              <p class="text-sm font-semibold text-brand-600 mt-1">{m.role}</p>
+              <p class="text-xs text-ink-500 mt-2 leading-relaxed">{m.specialty}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIOS ============ -->
+  <section class="container-site py-20 sm:py-24" aria-label="Testimonios">
+    <div class="max-w-2xl mb-12">
+      <p class="section-kicker mb-3">Testimonios</p>
+      <h2 class="section-title">Lo que dicen nuestros pacientes</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-6">
+      {
+        testimonios.map((t) => (
+          <figure class="card p-7">
+            <div class="flex gap-1 text-accent-400 mb-4" aria-label="5 estrellas">
+              {[0, 1, 2, 3, 4].map(() => <Icon name="star" class="w-4 h-4" />)}
+            </div>
+            <blockquote class="text-ink-700 leading-relaxed">"{t.quote}"</blockquote>
+            <figcaption class="mt-5 flex items-center gap-3">
+              <span class="grid place-items-center w-10 h-10 rounded-full bg-brand-50 text-brand-600 font-semibold text-sm">
+                <Icon name="user" class="w-5 h-5" />
+              </span>
+              <span>
+                <span class="block text-sm font-semibold text-ink-900">{t.name}</span>
+                <span class="block text-xs text-ink-500">{t.area}</span>
+              </span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+    <p class="mt-6 text-xs text-ink-500">
+      * Testimonios de ejemplo para el mockup. En la versión final se reemplazan por reseñas reales de Google, con autorización de los pacientes.
+    </p>
+  </section>
+
+  <!-- ============ BLOG ============ -->
+  <section class="bg-slate-50 border-y border-slate-100" aria-label="Blog">
+    <div class="container-site py-20 sm:py-24">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+        <div class="max-w-2xl">
+          <p class="section-kicker mb-3">Consejos de salud bucal</p>
+          <h2 class="section-title">Aprendé a cuidar tu sonrisa</h2>
+        </div>
+        <a href="/blog/" class="btn-secondary shrink-0">
+          Ver todos los artículos
+          <Icon name="arrow" class="w-5 h-5" />
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          posts.map((p) => (
+            <article class="card overflow-hidden flex flex-col">
+              <div class="h-40 bg-gradient-to-br from-brand-500 to-brand-700 grid place-items-center text-white/20">
+                <Icon name="tooth" class="w-16 h-16" />
+              </div>
+              <div class="p-6 flex flex-col flex-1">
+                <p class="text-xs font-semibold uppercase tracking-wider text-brand-600">
+                  {p.category} · {new Date(p.date).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" })}
+                </p>
+                <h3 class="mt-2 font-display font-semibold text-lg text-ink-900 leading-snug">
+                  <a href={`/blog/${p.slug}/`} class="hover:text-brand-700 transition-colors">
+                    {p.title}
+                  </a>
+                </h3>
+                <p class="mt-2 text-sm text-ink-500 leading-relaxed flex-1">{p.excerpt}</p>
+                <a
+                  href={`/blog/${p.slug}/`}
+                  class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-800 transition-colors"
+                >
+                  Leer más
+                  <Icon name="arrow" class="w-4 h-4" />
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="container-site py-20">
+    <div class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-brand-700 via-brand-800 to-brand-950 px-6 py-16 sm:px-16 text-center">
+      <div class="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-brand-500/30 blur-3xl" aria-hidden="true"></div>
+      <div class="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-accent-500/20 blur-3xl" aria-hidden="true"></div>
+      <div class="relative">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white leading-tight">
+          ¿Necesitás un turno?
+        </h2>
+        <p class="mt-4 text-brand-100/90 max-w-xl mx-auto leading-relaxed">
+          Respondemos rápido por WhatsApp. Contanos qué necesitás y te agendamos con el
+          especialista indicado — también atendemos urgencias.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn-whatsapp !text-base !px-8 !py-4">
+            <Icon name="whatsapp" class="w-5 h-5" />
+            Agendá tu turno
+          </a>
+          <a href={`tel:${site.phoneTel}`} class="btn-ghost-light !text-base !px-8 !py-4">
+            <Icon name="phone" class="w-5 h-5" />
+            {site.phoneDisplay}
+          </a>
+        </div>
+        <p class="mt-6 text-sm text-brand-200/70">
+          {site.address} · {site.city} · {site.hours}
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

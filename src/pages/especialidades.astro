@@ -1,0 +1,106 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import { site, services, masEspecialidades } from "../data/site";
+
+const title = "Especialidades — Odontología y salud integral";
+const description =
+  "Implantes dentales, ortodoncia, cosmética dental, endodoncia, odontopediatría, cirugía bucomaxilofacial y más. 16 especialistas en San Luis. Pedí tu turno por WhatsApp.";
+---
+
+<Layout title={title} description={description} path="/especialidades/">
+  <!-- Hero de página -->
+  <section class="bg-gradient-to-br from-brand-50 to-brand-100/60 border-b border-slate-100">
+    <div class="container-site py-16 sm:py-20 text-center max-w-3xl mx-auto">
+      <p class="section-kicker mb-4">Para nosotros</p>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-tight">
+        Tu mejor sonrisa es nuestra pasión
+      </h1>
+      <p class="mt-5 text-lg text-ink-700 leading-relaxed">
+        Nuestros especialistas atienden tu caso con una terapia personalizada, ajustada a la
+        mejor solución para tu problema. Todas las especialidades odontológicas en un mismo lugar.
+      </p>
+      <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn-whatsapp mt-8 !px-8 !py-4 !text-base">
+        <Icon name="whatsapp" class="w-5 h-5" />
+        Pedí turno
+      </a>
+    </div>
+  </section>
+
+  <!-- Tratamientos detallados -->
+  <section class="container-site py-16 sm:py-20">
+    <div class="max-w-2xl mb-12">
+      <p class="section-kicker mb-3">Tratamientos</p>
+      <h2 class="section-title">¿Cómo podemos ayudarte?</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-8">
+      {
+        services.map((s, i) => (
+          <article
+            class={`card p-8 ${i % 2 === 1 ? "sm:translate-y-6" : ""}`}
+          >
+            <span class="grid place-items-center w-14 h-14 rounded-2xl bg-brand-50 text-brand-600">
+              <Icon name={s.icon} class="w-8 h-8" />
+            </span>
+            <div class="flex items-center gap-3 mt-5">
+              <h2 class="font-display text-xl font-semibold text-ink-900">{s.title}</h2>
+              {s.tag && (
+                <span class="rounded-full bg-accent-100 text-accent-700 text-[11px] font-semibold px-3 py-1 shrink-0">
+                  {s.tag}
+                </span>
+              )}
+            </div>
+            <p class="mt-3 text-ink-500 leading-relaxed">{s.description}</p>
+            <a
+              href={site.whatsappUrl}
+              target="_blank"
+              rel="noopener"
+              class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-800 transition-colors"
+            >
+              Consultar por este tratamiento
+              <Icon name="arrow" class="w-4 h-4" />
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Todas las especialidades del equipo -->
+  <section class="bg-slate-50 border-y border-slate-100">
+    <div class="container-site py-16 sm:py-20">
+      <div class="max-w-2xl mb-10">
+        <p class="section-kicker mb-3">Equipo interdisciplinario</p>
+        <h2 class="section-title">Además, contamos con estas especialidades</h2>
+        <p class="mt-4 text-ink-700 leading-relaxed">
+          No solo odontología: el Centro de Salud C.E.O reúne especialistas médicos y de la
+          salud para un abordaje integral de cada paciente.
+        </p>
+      </div>
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {
+          masEspecialidades.map((e) => (
+            <li class="card p-4 flex items-center gap-3">
+              <Icon name="check" class="w-5 h-5 text-brand-600 shrink-0" />
+              <span class="text-sm font-medium text-ink-900">{e}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="container-site py-16 text-center max-w-2xl mx-auto">
+    <h2 class="section-title">¿No sabés qué tratamiento necesitás?</h2>
+    <p class="mt-4 text-ink-700 leading-relaxed">
+      Hacenos una consulta por WhatsApp y te orientamos con el especialista correcto.
+      La primera evaluación es el mejor primer paso.
+    </p>
+    <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn-whatsapp mt-8 !px-8 !py-4 !text-base">
+      <Icon name="whatsapp" class="w-5 h-5" />
+      Consultar por WhatsApp
+    </a>
+  </section>
+</Layout>

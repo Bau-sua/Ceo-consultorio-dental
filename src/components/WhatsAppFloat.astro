@@ -1,0 +1,27 @@
+---
+import Icon from "./Icon.astro";
+import { site } from "../data/site";
+---
+
+<a
+  href={site.whatsappUrl}
+  target="_blank"
+  rel="noopener"
+  aria-label="Escribinos por WhatsApp"
+  class="fixed bottom-5 right-5 z-50 group"
+>
+  <span
+    class="absolute inset-0 rounded-full bg-[#25D366] opacity-60 animate-ping group-hover:opacity-0 transition-opacity"
+    aria-hidden="true"
+  ></span>
+  <span
+    class="relative grid place-items-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-xl shadow-[#25D366]/40 group-hover:scale-110 transition-transform"
+  >
+    <Icon name="whatsapp" class="w-7 h-7" />
+  </span>
+  <span
+    class="absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg bg-ink-900 text-white text-xs font-medium px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+  >
+    ¿Necesitás un turno? ¡Escribinos!
+  </span>
+</a>

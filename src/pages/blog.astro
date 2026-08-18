@@ -1,0 +1,59 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import { posts } from "../data/site";
+
+const title = "Blog — Consejos de salud bucal";
+const description =
+  "Artículos de salud bucal escritos por el equipo del Centro de Salud C.E.O: higiene dental, odontopediatría, alimentación y más.";
+---
+
+<Layout title={title} description={description} path="/blog/">
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-brand-50 to-brand-100/60 border-b border-slate-100">
+    <div class="container-site py-14 sm:py-16 max-w-3xl mx-auto text-center">
+      <p class="section-kicker mb-4">Blog</p>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-tight">
+        Consejos para cuidar tu sonrisa
+      </h1>
+      <p class="mt-5 text-lg text-ink-700 leading-relaxed">
+        Artículos escritos por nuestro equipo para que aprendas a prevenir, cuidarte y
+        llegar a tu consulta con todas las dudas resueltas.
+      </p>
+    </div>
+  </section>
+
+  <!-- Artículos -->
+  <section class="container-site py-16">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        posts.map((p) => (
+          <article class="card overflow-hidden flex flex-col">
+            <div class="h-44 bg-gradient-to-br from-brand-500 to-brand-700 grid place-items-center text-white/20">
+              <Icon name="tooth" class="w-16 h-16" />
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <p class="text-xs font-semibold uppercase tracking-wider text-brand-600">
+                {p.category} ·{" "}
+                {new Date(p.date).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" })}
+              </p>
+              <h2 class="mt-2 font-display font-semibold text-lg text-ink-900 leading-snug">
+                <a href={`/blog/${p.slug}/`} class="hover:text-brand-700 transition-colors">
+                  {p.title}
+                </a>
+              </h2>
+              <p class="mt-2 text-sm text-ink-500 leading-relaxed flex-1">{p.excerpt}</p>
+              <a
+                href={`/blog/${p.slug}/`}
+                class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-800 transition-colors"
+              >
+                Leer artículo
+                <Icon name="arrow" class="w-4 h-4" />
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
