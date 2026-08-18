@@ -12,26 +12,26 @@ export const site = {
   phoneDisplay: "+54 9 266 470 95 35",
   phoneTel: "+542664709535",
   whatsappMessage:
-    "Hola! 👋 Somos Ceo, ¿en qué podemos ayudarte?",
+    "Hola buenos días, quisiera un turno para …",
   whatsappUrl:
-    "https://api.whatsapp.com/send?phone=542664709535&text=Hola!%20%F0%9F%91%8B%20Somos%20Ceo%2C%20%C2%BFen%20qu%C3%A9%20podemos%20ayudarte%3F",
+    "https://api.whatsapp.com/send?phone=542664709535&text=Hola%20buenos%20d%C3%ADas%2C%20quisiera%20un%20turno%20para%20%E2%80%A6",
   email: "info@centrodesaludceo.com",
   address: "Ayacucho 1357",
   city: "San Luis Capital, San Luis, Argentina",
   hours: "Lunes a viernes · 08:00 a 20:00 hs",
-  instagram: "https://www.instagram.com/centrodesaludceo/",
-  instagramHandle: "@centrodesaludceo",
+  instagram: "https://www.instagram.com/ceo.centrodesalud/",
+  instagramHandle: "@ceo.centrodesalud",
   mapsEmbed:
     "https://www.google.com/maps?q=Ayacucho+1357,+San+Luis,+Argentina&output=embed",
   mapsLink:
     "https://www.google.com/maps/search/?api=1&query=Ayacucho+1357+San+Luis+Argentina",
-  years: "10+",
+  years: "+10",
 };
 
 export const stats = [
-  { value: "10+", label: "Años cuidando sonrisas" },
+  { value: "+10", label: "Años cuidando sonrisas" },
   { value: "16", label: "Especialistas en un solo lugar" },
-  { value: "10.000+", label: "Pacientes atendidos" },
+  { value: "+10.000", label: "Pacientes atendidos" },
   { value: "6", label: "Obras sociales y prepagas" },
 ];
 
@@ -125,25 +125,26 @@ export type TeamMember = {
   role: string;
   specialty: string;
   area: string;
+  photo?: string;
 };
 
 export const team: TeamMember[] = [
-  { name: "Dra. Daniela Bartolucci", role: "Odontóloga", specialty: "Ortodoncia y ortopedia de los maxilares", area: "Odontología" },
-  { name: "Dra. Ana Laura Feliciani", role: "Odontóloga", specialty: "Implantes, estética dental, odontología digital, prótesis", area: "Odontología" },
-  { name: "Dr. Ramiro Martínez", role: "Odontólogo", specialty: "Cirugía bucomaxilofacial, ortognática e implantes", area: "Odontología" },
-  { name: "Dr. Milton Saavedra Sierra", role: "Odontólogo", specialty: "Endodoncia", area: "Odontología" },
-  { name: "Dra. María Paula Britos", role: "Odontóloga", specialty: "Ortodoncia, odontopediatría y estética dental", area: "Odontología" },
-  { name: "Dr. Agustín Ejarque", role: "Odontólogo", specialty: "Implantes, estética, prótesis y odontología digital", area: "Odontología" },
-  { name: "Dra. Luciana Picco", role: "Odontóloga", specialty: "Ortodoncia, estética, blanqueamientos, endodoncia, cirugías y prótesis", area: "Odontología" },
-  { name: "Dr. Mariano Forlino", role: "Médico", specialty: "Diabetes y obesidad", area: "Medicina" },
-  { name: "Dra. Andrea Aquila", role: "Médica", specialty: "Pediatría", area: "Medicina" },
-  { name: "Dra. Leticia Scarcelli", role: "Médica", specialty: "Dermatología, tricología y medicina estética", area: "Medicina" },
-  { name: "Lic. María Laura López", role: "Bioquímica", specialty: "Laboratorio López-Gaute", area: "Salud" },
-  { name: "Lic. Jimena Gaute", role: "Bioquímica", specialty: "Laboratorio López-Gaute", area: "Salud" },
-  { name: "Lic. Jessica Malinovsky", role: "Psicoterapeuta", specialty: "Psicoterapia", area: "Salud" },
-  { name: "Lic. Florencia Cobarruvia", role: "Kinesióloga", specialty: "Kinesiología maxilofacial", area: "Salud" },
-  { name: "Lic. Milena Pérez", role: "Nutricionista", specialty: "Alimentación real, antiinflamatoria y descenso de peso", area: "Salud" },
-  { name: "Fga. María Alejandra Baggini", role: "Fonoaudióloga", specialty: "Voz, lenguaje y deglución", area: "Salud" },
+  { name: "Dra. Daniela Bartolucci", role: "Odontóloga", specialty: "Ortodoncia y ortopedia de los maxilares", area: "Odontología", photo: "/personal/Dra.-Daniela-Bartolucci.png" },
+  { name: "Dra. Ana Laura Feliciani", role: "Odontóloga", specialty: "Implantes, estética dental, odontología digital, prótesis", area: "Odontología", photo: "/personal/Dra-Ana-Felicciani.png" },
+  { name: "Dr. Ramiro Martínez", role: "Odontólogo", specialty: "Cirugía bucomaxilofacial, ortognática e implantes", area: "Odontología", photo: "/personal/Dr-Ramiro-Martinez.png" },
+  { name: "Dr. Milton Saavedra Sierra", role: "Odontólogo", specialty: "Endodoncia", area: "Odontología", photo: "/personal/Dr-Milton-Saavedra-Sierra.png" },
+  { name: "Dra. María Paula Britos", role: "Odontóloga", specialty: "Ortodoncia, odontopediatría y estética dental", area: "Odontología", photo: "/personal/Dra-Maria-Paula-Britos.png" },
+  { name: "Dr. Agustín Ejarque", role: "Odontólogo", specialty: "Implantes, estética, prótesis y odontología digital", area: "Odontología", photo: "/personal/Dra-Agustin-Ejarque.png" },
+  { name: "Dra. Luciana Picco", role: "Odontóloga", specialty: "Ortodoncia, estética, blanqueamientos, endodoncia, cirugías y prótesis", area: "Odontología", photo: "/personal/Dra-Luciana-Picco.png" },
+  { name: "Dr. Mariano Forlino", role: "Médico", specialty: "Diabetes y obesidad", area: "Medicina", photo: "/personal/Dr-Mariano-Forlino.png" },
+  { name: "Dra. Andrea Aquila", role: "Médica", specialty: "Pediatría", area: "Medicina", photo: "/personal/Dra-Andrea-Aquila.png" },
+  { name: "Dra. Leticia Scarcelli", role: "Médica", specialty: "Dermatología, tricología y medicina estética", area: "Medicina", photo: "/personal/Dra-Alejandra-Scarcelli.png" },
+  { name: "Lic. María Laura López", role: "Bioquímica", specialty: "Laboratorio López-Gaute", area: "Salud", photo: "/personal/Laboratorio-Lopez-Gaute.png" },
+  { name: "Lic. Jimena Gaute", role: "Bioquímica", specialty: "Laboratorio López-Gaute", area: "Salud", photo: "/personal/Laboratorio-Lopez-Gaute.png" },
+  { name: "Lic. Jessica Malinovsky", role: "Psicoterapeuta", specialty: "Psicoterapia", area: "Salud", photo: "/personal/Lic.-Jessica-Malinovsky.png" },
+  { name: "Lic. Florencia Cobarruvia", role: "Kinesióloga", specialty: "Kinesiología maxilofacial", area: "Salud", photo: "/personal/Lic-Florencia-Cobaruvia.png" },
+  { name: "Lic. Milena Pérez", role: "Nutricionista", specialty: "Alimentación real, antiinflamatoria y descenso de peso", area: "Salud", photo: "/personal/Lic-Milena-Perez.png" },
+  { name: "Fga. María Alejandra Baggini", role: "Fonoaudióloga", specialty: "Voz, lenguaje y deglución", area: "Salud", photo: "/personal/Fga.-Maria-Alejandra-Baggini.png" },
 ];
 
 export const testimonios = [
@@ -180,6 +181,7 @@ export type Post = {
   category: string;
   excerpt: string;
   body: string[];
+  image: string;
 };
 
 export const posts: Post[] = [
@@ -190,6 +192,7 @@ export const posts: Post[] = [
     category: "Higiene dental",
     excerpt:
       "Cepillarse parece sencillo, pero hacerlo bien marca la diferencia entre una boca sana y problemas que se podrían evitar. Te contamos cómo.",
+    image: "/img-blog-consigue-una-sonrisa.webp",
     body: [
       "Mantener una sonrisa saludable no depende de la suerte: es el resultado de hábitos simples aplicados todos los días. La buena noticia es que nunca es tarde para empezar, y los resultados se notan en pocas semanas.",
       "La técnica importa más de lo que creés. Colocá el cepillo en un ángulo de 45° sobre la línea de las encías y hacé movimientos cortos y suaves. No te olvides de la lengua y el paladar: allí se acumulan la mayoría de las bacterias que causan mal aliento.",
@@ -204,6 +207,7 @@ export const posts: Post[] = [
     category: "Odontopediatría",
     excerpt:
       "Los dientes de leche se caen solos, pero cuidarlos desde el primer diente define la salud bucal de toda la vida. Te explicamos por qué y cómo.",
+    image: "/img-blog-los-primeros-dientes.webp",
     body: [
       "\"Si se caen solos, ¿para qué cuidarlos?\" Es la pregunta más común en el consultorio y la respuesta es contundente: los dientes de leche son los guías de los definitivos. Si se pierden antes de tiempo por caries, los dientes permanentes pueden salir torcidos o apiñados.",
       "Además, la caries en la infancia duele, afecta la alimentación, el sueño y el rendimiento escolar. Un niño con dolor no come bien, no duerme bien y rinde peor. Prevenirla es más fácil de lo que parece.",
@@ -218,6 +222,7 @@ export const posts: Post[] = [
     category: "Nutrición",
     excerpt:
       "Lo que comemos no solo afecta el peso: también define la salud de nuestros dientes y encías. Estos son los alimentos que te conviene sumar.",
+    image: "/img-blog-comida-y-salud.webp",
     body: [
       "Cada vez que comemos algo con azúcar, las bacterias de la boca producen ácido que ataca el esmalte durante unos 20 minutos. Por eso no importa solo cuánto azúcar comés, sino con qué frecuencia: picar dulces todo el día es peor que un postre después de las comidas.",
       "Hay alimentos que son aliados de tu boca. El queso ayuda a neutralizar los ácidos y aporta calcio. Las manzanas y las zanahorias crudas estimulan la saliva, el limpiador natural de la boca. El té verde tiene compuestos que frenan el crecimiento de bacterias.",

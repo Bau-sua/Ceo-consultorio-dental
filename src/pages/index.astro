@@ -43,7 +43,7 @@ const schema = JSON.stringify({
         <p class="section-kicker mb-4">Odontología y salud integral en San Luis</p>
         <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.4rem] font-bold leading-[1.08] tracking-tight">
           Tu mejor sonrisa
-          <span class="text-brand-600">empieza acá</span>
+          <span class="text-brand-600"> empieza acá</span>
         </h1>
         <p class="mt-5 text-lg text-ink-700 leading-relaxed max-w-xl">
           {site.years} años cuidando a las familias de San Luis con{" "}
@@ -93,13 +93,22 @@ const schema = JSON.stringify({
               <div class="flex -space-x-3">
                 {
                   team.slice(0, 4).map((m) => (
-                    <span
-                      class="grid place-items-center w-11 h-11 rounded-full bg-brand-100 text-brand-700 font-display font-semibold text-sm border-2 border-white"
-                      title={m.name}
-                    >
-                      {m.name.replace("Dra. ", "").replace("Dr. ", "").replace("Lic. ", "").replace("Fga. ", "").split(" ")[0][0]}
-                      {m.name.split(" ").pop()?.[0]}
-                    </span>
+                    m.photo ? (
+                      <img
+                        src={m.photo}
+                        alt={m.name}
+                        class="w-11 h-11 rounded-full object-cover border-2 border-white"
+                        title={m.name}
+                      />
+                    ) : (
+                      <span
+                        class="grid place-items-center w-11 h-11 rounded-full bg-brand-100 text-brand-700 font-display font-semibold text-sm border-2 border-white"
+                        title={m.name}
+                      >
+                        {m.name.replace("Dra. ", "").replace("Dr. ", "").replace("Lic. ", "").replace("Fga. ", "").split(" ")[0][0]}
+                        {m.name.split(" ").pop()?.[0]}
+                      </span>
+                    )
                   ))
                 }
               </div>
@@ -113,7 +122,7 @@ const schema = JSON.stringify({
         </div>
 
         <!-- Tarjeta flotante obras sociales -->
-        <div class="absolute -bottom-8 -left-6 rounded-2xl bg-white shadow-xl p-4 border border-slate-100 animate-fade-up delay-300">
+        <div class="absolute -bottom-8 -right-6 rounded-2xl bg-white shadow-xl p-4 border border-slate-100 animate-fade-up delay-300">
           <p class="text-xs font-semibold uppercase tracking-wider text-ink-500 mb-2">
             Atendemos por
           </p>
@@ -289,10 +298,14 @@ const schema = JSON.stringify({
         {
           team.slice(0, 4).map((m) => (
             <article class="card p-6 text-center">
-              <span class="mx-auto grid place-items-center w-20 h-20 rounded-full bg-brand-100 text-brand-700 font-display font-bold text-2xl">
-                {m.name.replace("Dra. ", "").replace("Dr. ", "").replace("Lic. ", "").replace("Fga. ", "").split(" ")[0][0]}
-                {m.name.split(" ").pop()?.[0]}
-              </span>
+              {m.photo ? (
+                <img src={m.photo} alt={m.name} class="mx-auto w-20 h-20 rounded-full object-cover border-2 border-brand-100" loading="lazy" />
+              ) : (
+                <span class="mx-auto grid place-items-center w-20 h-20 rounded-full bg-brand-100 text-brand-700 font-display font-bold text-2xl">
+                  {m.name.replace("Dra. ", "").replace("Dr. ", "").replace("Lic. ", "").replace("Fga. ", "").split(" ")[0][0]}
+                  {m.name.split(" ").pop()?.[0]}
+                </span>
+              )}
               <h3 class="mt-4 font-display font-semibold text-ink-900">{m.name}</h3>
               <p class="text-sm font-semibold text-brand-600 mt-1">{m.role}</p>
               <p class="text-xs text-ink-500 mt-2 leading-relaxed">{m.specialty}</p>
@@ -353,8 +366,8 @@ const schema = JSON.stringify({
         {
           posts.map((p) => (
             <article class="card overflow-hidden flex flex-col">
-              <div class="h-40 bg-gradient-to-br from-brand-500 to-brand-700 grid place-items-center text-white/20">
-                <Icon name="tooth" class="w-16 h-16" />
+              <div class="h-40 overflow-hidden">
+                <img src={p.image} alt={p.title} class="w-full h-full object-cover" loading="lazy" />
               </div>
               <div class="p-6 flex flex-col flex-1">
                 <p class="text-xs font-semibold uppercase tracking-wider text-brand-600">

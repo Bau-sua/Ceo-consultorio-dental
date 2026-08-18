@@ -29,8 +29,8 @@ const description =
       {
         posts.map((p) => (
           <article class="card overflow-hidden flex flex-col">
-            <div class="h-44 bg-gradient-to-br from-brand-500 to-brand-700 grid place-items-center text-white/20">
-              <Icon name="tooth" class="w-16 h-16" />
+            <div class="h-44 overflow-hidden">
+              <img src={p.image} alt={p.title} class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="p-6 flex flex-col flex-1">
               <p class="text-xs font-semibold uppercase tracking-wider text-brand-600">

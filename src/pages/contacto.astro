@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Icon from "../components/Icon.astro";
-import { site, services } from "../data/site";
+import { site } from "../data/site";
 
 const title = "Contacto — Pedí tu turno";
 const description =
@@ -17,123 +17,18 @@ const description =
         Pedí tu turno
       </h1>
       <p class="mt-5 text-lg text-ink-700 leading-relaxed">
-        Si es para un turno, te aconsejamos un mensaje de WhatsApp: respondemos rápido.
-        Para otras consultas, usá el formulario o escribinos por mail.
+        La forma más rápida de sacar turno es por WhatsApp: escribinos y te respondemos a la brevedad.
       </p>
+      <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn-whatsapp mt-8 !px-8 !py-4 !text-base">
+        <Icon name="whatsapp" class="w-5 h-5" />
+        Escribinos por WhatsApp
+      </a>
     </div>
   </section>
 
-  <section class="container-site py-16 grid lg:grid-cols-5 gap-10">
-    <!-- Formulario -->
-    <div id="turnos" class="lg:col-span-3">
-      <div class="card p-8 sm:p-10">
-        <h2 class="section-title !text-2xl">Solicitá tu turno</h2>
-        <p class="mt-2 text-sm text-ink-500">
-          Completá el formulario y te contactamos a la brevedad. (*) Datos obligatorios.
-        </p>
-
-        <form class="mt-8 space-y-5" method="post" data-netlify="true" name="turnos" action="/gracias/">
-          <input type="hidden" name="form-name" value="turnos" />
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label for="nombre" class="block text-sm font-semibold text-ink-900 mb-1.5">Nombre y apellido *</label>
-              <input
-                id="nombre"
-                name="nombre"
-                type="text"
-                required
-                placeholder="Tu nombre"
-                class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
-              />
-            </div>
-            <div>
-              <label for="telefono" class="block text-sm font-semibold text-ink-900 mb-1.5">Teléfono / WhatsApp *</label>
-              <input
-                id="telefono"
-                name="telefono"
-                type="tel"
-                required
-                placeholder="2664 000000"
-                class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label for="especialidad" class="block text-sm font-semibold text-ink-900 mb-1.5">Especialidad *</label>
-            <select
-              id="especialidad"
-              name="especialidad"
-              required
-              class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
-            >
-              <option value="">Elegí una opción…</option>
-              {
-                services.map((s) => <option value={s.title}>{s.title}</option>)
-              }
-              <option value="Otra especialidad (medicina, nutrición, etc.)">
-                Otra especialidad (medicina, nutrición, etc.)
-              </option>
-              <option value="No sé / necesito orientación">No sé / necesito orientación</option>
-              <option value="Urgencia">Urgencia</option>
-            </select>
-          </div>
-
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label for="fecha" class="block text-sm font-semibold text-ink-900 mb-1.5">Fecha preferida</label>
-              <input
-                id="fecha"
-                name="fecha"
-                type="date"
-                class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
-              />
-            </div>
-            <div>
-              <label for="horario" class="block text-sm font-semibold text-ink-900 mb-1.5">Turno (mañana / tarde)</label>
-              <select
-                id="horario"
-                name="horario"
-                class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
-              >
-                <option value="">Indiferente</option>
-                <option value="Mañana (08:00–13:00)">Mañana (08:00–13:00)</option>
-                <option value="Tarde (13:00–20:00)">Tarde (13:00–20:00)</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label for="mensaje" class="block text-sm font-semibold text-ink-900 mb-1.5">Mensaje</label>
-            <textarea
-              id="mensaje"
-              name="mensaje"
-              rows="4"
-              placeholder="Contanos brevemente tu consulta…"
-              class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
-            ></textarea>
-          </div>
-
-          <div class="flex flex-col sm:flex-row gap-4 pt-2">
-            <button type="submit" class="btn-primary !px-8 !py-4 !text-base">
-              Enviar solicitud
-              <Icon name="arrow" class="w-5 h-5" />
-            </button>
-            <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn-whatsapp !px-8 !py-4 !text-base">
-              <Icon name="whatsapp" class="w-5 h-5" />
-              Más rápido por WhatsApp
-            </a>
-          </div>
-          <p class="text-xs text-ink-500 pt-2">
-            * En el mockup el formulario no envía datos todavía. En la versión final se conecta
-            con Netlify Forms / Cloudflare Worker y un aviso por WhatsApp al consultorio.
-          </p>
-        </form>
-      </div>
-    </div>
-
+  <section class="container-site py-16 grid lg:grid-cols-2 gap-10">
     <!-- Datos de contacto -->
-    <aside class="lg:col-span-2 space-y-6">
+    <div class="space-y-6">
       <div class="card p-7">
         <h2 class="font-display font-semibold text-lg text-ink-900 mb-5">Datos de contacto</h2>
         <ul class="space-y-4 text-sm">
@@ -209,6 +104,6 @@ const description =
           allowfullscreen
         ></iframe>
       </div>
-    </aside>
+    </div>
   </section>
 </Layout>
