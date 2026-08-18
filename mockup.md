@@ -29,8 +29,8 @@ npm run build      # genera el sitio estático en /dist
 |---|---|---|
 | H1 en todas las páginas | ❌ La home no tenía H1 en el hero; el único H1 era "Nuestro Equipo" en medio de la página. Contacto no tenía H1 | ✅ H1 único y descriptivo en cada página ("Tu mejor sonrisa empieza acá", "Pedí tu turno", etc.) |
 | Meta descriptions | ❌ Ninguna | ✅ Única por página, con keywords locales (San Luis, odontología, implantes…) |
-| Open Graph / Twitter Cards | ❌ Ausentes (al compartir por WhatsApp no salía nada) | ✅ Completos, con og:image |
-| Datos estructurados (schema.org) | ❌ Ausentes | ✅ `Dentist + MedicalClinic` con dirección, horarios, teléfono y catálogo de servicios en la home; `BlogPosting` en cada artículo |
+| Open Graph / Twitter Cards | ❌ Ausentes (al compartir por WhatsApp no salía nada) | ✅ Completos, con og:image + width/height |
+| Datos estructurados (schema.org) | ❌ Ausentes | ✅ `Dentist + MedicalClinic` (home), `BlogPosting` (artículos), `BreadcrumbList` (5 páginas internas), `LocalBusiness` (contacto) |
 | Sitemap | ❌ `sitemap.xml` vacío (0 bytes) | ✅ Generado automáticamente con `@astrojs/sitemap` |
 | robots.txt | ❌ Crawl-delay de 60 s, reglas que frenan a Google | ✅ Limpio: `Allow: /` + sitemap |
 | Jerarquía de encabezados | ❌ H6 antes que H1, contador con `class="value="` roto, 16+ H2 para nombres de médicos | ✅ H1 → H2 → H3 ordenados y semánticos |
@@ -57,7 +57,7 @@ npm run build      # genera el sitio estático en /dist
 | Servicios mostrados | Solo 4 (implantes, cosmética, revisión, conducto) | ✅ 8 tratamientos en tarjetas + lista de 12 especialidades adicionales (ortodoncia, odontopediatría, cirugía, prótesis, nutrición, kinesiología…) |
 | Botón "Todas las especialidades" | ❌ Llevaba a /nosotros/ | ✅ Lleva a /especialidades/ |
 | Blog | 3 posts con texto de relleno ("dame letra") y "Read more" en inglés | ✅ 3 artículos reescritos completos, en español, con estructura y CTA |
-| Turnos | Solo WhatsApp | ✅ Formulario de turnos (especialidad, fecha, turno) + WhatsApp como alternativa rápida |
+| Turnos | Solo WhatsApp | ✅ WhatsApp como canal principal de turnos (formulario eliminado, más simple y directo) |
 | Mapa | ❌ No había | ✅ Embed de Google Maps + botón "Cómo llegar" |
 | Testimonios | ❌ Solo números | ✅ Sección de testimonios (con nota de que se reemplazan por reseñas reales) |
 | Errores de tipeo | "tú turno", "Cosmetica", "WhatApp" | ✅ Corregidos |
@@ -86,8 +86,12 @@ npm run build      # genera el sitio estático en /dist
 mockup-ceo/
 ├── astro.config.mjs          # Config: site URL + sitemap + Tailwind
 ├── public/
-│   ├── favicon.svg           # Logo diente (SVG)
-│   └── robots.txt            # robots limpio
+│   ├── favicon.png           # Icono real de la clínica
+│   ├── og-image.png          # Imagen para Open Graph / redes
+│   ├── Logo-ceo.png          # Logo de la marca
+│   ├── robots.txt            # robots limpio
+│   ├── personal/             # 16 fotos de los profesionales
+│   └── img-blog-*.webp       # Imágenes de artículos del blog
 └── src/
     ├── data/site.ts          # ⭐ Todo el contenido editable: contacto,
     │                         #   servicios, equipo, posts, obras sociales
@@ -97,12 +101,12 @@ mockup-ceo/
     │   ├── Footer.astro      # Contacto, navegación, mapa
     │   ├── WhatsAppFloat.astro
     │   └── Icon.astro        # Iconos SVG inline (sin dependencias)
-    ├── layouts/Layout.astro  # Head SEO completo + header + footer
+    ├── layouts/Layout.astro  # Head SEO completo + schema.org + extraSchemas
     └── pages/
         ├── index.astro       # Home
         ├── especialidades.astro
-        ├── nosotros.astro
-        ├── contacto.astro    # Formulario de turnos + mapa
+        ├── nosotros.astro    # Video del equipo (Google Drive embed)
+        ├── contacto.astro    # WhatsApp + mapa + LocalBusiness schema
         ├── blog.astro        # Índice del blog
         └── blog/[slug].astro # Artículo individual (rutas dinámicas)
 ```
@@ -115,9 +119,9 @@ mockup-ceo/
 ## 🔜 Pendiente para la versión final (cuando se venda)
 
 - [ ] Reemplazar los placeholders visuales (gradientes) por **fotos reales de la clínica**
-- [ ] Conectar el **formulario de turnos**: Cloudflare Worker o Netlify Forms + aviso por WhatsApp al consultorio
+- [ ] Opcional: conectar un **formulario de turnos** (Cloudflare Worker o Netlify Forms) como alternativa a WhatsApp
 - [ ] Poner **reseñas reales de Google** en la sección de testimonios (con autorización)
-- [ ] Crear el **og-image.png** con el logo y la marca
+- [x] Crear el **og-image.png** con el logo y la marca
 - [ ] Confirmar **horarios reales** y agregar días/feriados
 - [ ] Escribir 2 artículos de blog por mes (calendario editorial)
 - [ ] Verificar y reclamar el **Google Business Profile** y enlazarlo
@@ -133,11 +137,11 @@ mockup-ceo/
 2. **Antes:** invisible para Google (sin meta tags, sitemap vacío, robots hostil).
    **Después:** SEO completo + datos estructurados + sitemap → aparece en "dentista en San Luis".
 3. **Antes:** el botón "Todas las especialidades" llevaba a la página equivocada y el blog tenía
-   textos de relleno. **Después:** flujo de conversión completo (formulario + WhatsApp + mapa).
+   textos de relleno. **Después:** flujo de conversión completo (WhatsApp directo + mapa + CTA final).
 4. **Antes:** solo 4 tratamientos visibles. **Después:** 8 servicios + 12 especialidades del equipo.
 5. **Antes:** el dueño dependía de un tema comercial + plugins. **Después:** un sitio propio,
    rápido, barato de mantener y fácil de editar (los datos viven en un solo archivo).
 
 ---
 
-*Mockup generado el 17/08/2026 — listo para mostrar y, cuando se venda, para deployar en Cloudflare Pages.*
+*Mockup generado el 17/08/2026 — actualizado el 18/08/2026. Listo para mostrar y, cuando se venda, para deployar en Cloudflare Pages.*
