@@ -5,10 +5,37 @@ import { site } from "../data/site";
 
 const title = "Contacto — Pedí tu turno";
 const description =
-  "Pedí tu turno en el Centro de Salud C.E.O por WhatsApp o con nuestro formulario. Ayacucho 1357, San Luis Capital. Lunes a viernes de 08:00 a 20:00 hs.";
+  "Pedí tu turno en el Centro de Salud C.E.O por WhatsApp. Ayacucho 1357, San Luis Capital. Lunes a viernes de 08:00 a 20:00 hs.";
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: site.url },
+    { "@type": "ListItem", position: 2, name: "Contacto", item: `${site.url}/contacto/` },
+  ],
+});
+const localBusinessSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: site.name,
+  image: `${site.url}/og-image.png`,
+  telephone: site.phoneTel,
+  email: site.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address,
+    addressLocality: "San Luis",
+    addressRegion: "San Luis",
+    addressCountry: "AR",
+  },
+  geo: { "@type": "GeoCoordinates", latitude: -33.2996, longitude: -66.3356 },
+  openingHours: "Mo-Fr 08:00-20:00",
+  url: `${site.url}/contacto/`,
+  sameAs: [site.instagram],
+});
 ---
 
-<Layout title={title} description={description} path="/contacto/">
+<Layout title={title} description={description} path="/contacto/" extraSchemas={[breadcrumbSchema, localBusinessSchema]}>
   <!-- Hero -->
   <section class="bg-gradient-to-br from-brand-50 to-brand-100/60 border-b border-slate-100">
     <div class="container-site py-14 sm:py-16 text-center max-w-2xl mx-auto">
