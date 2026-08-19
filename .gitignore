@@ -29,3 +29,8 @@ Thumbs.db
 
 # misc
 *.tsbuildinfo
+
+# large media files (use external hosting)
+public/*.mp4
+PROPUESTA-COMERCIAL.md
+DEPLOY.md
